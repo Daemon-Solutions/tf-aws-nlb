@@ -8,18 +8,18 @@ AWS Network Load-Balancer (NLB) - Terraform Module
 
 ```js
 provider "aws" {
- region     = "eu-west-2"
+ region = "eu-west-2"
 }
 
 module "nlb" {
-   source = "../modules/tf-aws-nlb"
-   envname = "dev"
-   service = "test"
-   name = "test"
-   subnets = ["subnet-51353829", "subnet-e65d70ac"]
-   enable_http_listener = true
-   enable_https_listener = true
-   vpc_id = "${var.vpc_id}"
+   source                   = "../modules/tf-aws-nlb"
+   envname                  = "dev"
+   service                  = "test"
+   name                     = "test"
+   subnets                  = ["subnet-51353829", "subnet-e65d70ac"]
+   enable_http_listener     = true
+   enable_https_listener    = true
+   vpc_id                   = "${var.vpc_id}"
    target_health_check_port = "80"
 }
 ```
