@@ -40,7 +40,7 @@ resource "aws_lb" "nlb" {
   internal                   = "${var.internal}"
   subnets                    = ["${var.subnets}"]
   enable_deletion_protection = "${var.enable_deletion_protection}"
-  load_balancer_type = "network"
+  load_balancer_type         = "network"
 
   tags {
     Name        = "${var.name}"
@@ -72,13 +72,13 @@ module "http_listener" {
   source            = "./listener"
   load_balancer_arn = "${aws_lb.nlb.arn}"
   target_group_arn  = "${module.http_target_group.nlb_target_group_arn}"
-  listener_port            = "80"
+  listener_port     = "80"
 }
 
 module "https_listener" {
-  is_enabled               = "${var.enable_https_listener}"
-  source                   = "./listener"
-  listener_port            = "443"
-  load_balancer_arn        = "${aws_lb.nlb.arn}"
-  target_group_arn         = "${module.http_target_group.nlb_target_group_arn}"
+  is_enabled        = "${var.enable_https_listener}"
+  source            = "./listener"
+  listener_port     = "443"
+  load_balancer_arn = "${aws_lb.nlb.arn}"
+  target_group_arn  = "${module.http_target_group.nlb_target_group_arn}"
 }
